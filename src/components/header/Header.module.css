@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     height: var(--header-height);
-    background-color: var(--header-bg-color);
+    background-color: var(--global-primary-color);
     color: var(--header-text-color);
     border-bottom: 1px solid var(--header-border-color);
     box-shadow: var(--header-shadow);
@@ -19,36 +19,9 @@
     transition: all 0.3s ease;
 }
 
-.logoContainer {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 0;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--logo-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.logo:hover {
-    opacity: 0.8;
-}
-
-.logoIcon {
-    width: 32px;
-    height: 32px;
-    background-color: var(--logo-color);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
+.logoContainer img {
+    height: 50px;
+    object-fit: contain;
 }
 
 .nav {
