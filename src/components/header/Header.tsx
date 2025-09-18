@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import styles from "./Header.module.css";
+import Link from 'next/link';
 
 interface NavItem {
     label: string;
@@ -34,9 +35,9 @@ const Header = () => {
                     <div className={styles.logoIcon}>
                         L
                     </div>
-                    <a href="/" className={styles.logo}>
+                    <Link href="/" className={styles.logo}>
                         Logo
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Desktop Navigation */}
@@ -44,13 +45,13 @@ const Header = () => {
                     <ul className={styles.navList}>
                         {navItems.map((item, index) => (
                             <li key={index} className={styles.navItem}>
-                                <a
+                                <Link
                                     href={item.href}
                                     className={`${styles.navLink} ${item.active ? styles.active : ''}`}
                                     onClick={handleNavClick}
                                 >
                                     {item.label}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -74,13 +75,13 @@ const Header = () => {
                 <ul className={styles.mobileNavList}>
                     {navItems.map((item, index) => (
                         <li key={index} className={styles.mobileNavItem}>
-                            <a
+                            <Link
                                 href={item.href}
                                 className={`${styles.mobileNavLink} ${item.active ? styles.active : ''}`}
                                 onClick={handleNavClick}
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>
