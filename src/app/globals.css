@@ -27,6 +27,22 @@
   --footer-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   --footer-social-bg: #ffffff;
   --footer-social-hover-bg: #2d79ac;
+
+  /* Hero Component Variables */
+  --hero-min-height: 100vh;
+  --hero-bg-overlay: rgba(0, 0, 0, 0.4);
+  --hero-text-color: #ffffff;
+  --hero-title-size: 3.5rem;
+  --hero-description-size: 1.25rem;
+  --hero-content-max-width: 800px;
+  --hero-padding: 2rem;
+  --hero-button-primary-bg: #2d79ac;
+  --hero-button-primary-hover: #1e5a87;
+  --hero-button-secondary-bg: rgba(255, 255, 255, 0.1);
+  --hero-button-secondary-hover: rgba(255, 255, 255, 0.2);
+  --hero-button-border: 2px solid rgba(255, 255, 255, 0.3);
+  --hero-title-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  --hero-description-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 @theme inline {
@@ -61,6 +77,11 @@
     --footer-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
     --footer-social-bg: #2a2a2a;
     --footer-social-hover-bg: #4a9eff;
+
+    /* Hero Component Dark Theme Variables */
+    --hero-bg-overlay: rgba(0, 0, 0, 0.6);
+    --hero-button-primary-bg: #4a9eff;
+    --hero-button-primary-hover: #6bb3ff;
   }
 }
 
@@ -89,6 +110,11 @@
   --footer-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
   --footer-social-bg: #2a2a2a;
   --footer-social-hover-bg: #4a9eff;
+
+  /* Hero Component Dark Theme Variables */
+  --hero-bg-overlay: rgba(0, 0, 0, 0.6);
+  --hero-button-primary-bg: #4a9eff;
+  --hero-button-primary-hover: #6bb3ff;
 }
 
 body {
