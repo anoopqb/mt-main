@@ -44,7 +44,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header logo={global?.data?.logo?.url} navItems={global?.data?.topNavItems} />
+        <Header
+          logo={global?.data?.logo?.url}
+          navItems={global?.data?.topNavItems}
+        />
         {children}
         <Footer
           {...global?.data}

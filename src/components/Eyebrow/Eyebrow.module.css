@@ -1,0 +1,96 @@
+/* Eyebrow Component Styles */
+
+.eyebrow {
+    position: relative;
+    width: 100%;
+    background: var(--eyebrow-bg-color);
+    color: var(--eyebrow-text-color);
+    text-align: center;
+    box-shadow: var(--eyebrow-shadow);
+    font-size: var(--eyebrow-font-size);
+    font-weight: 500;
+    height: var(--eyebrow-height);
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--eyebrow-padding);
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.text {
+    flex: 1;
+    text-align: center;
+    line-height: 1.4;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .eyebrow {
+        font-size: 0.8rem;
+    }
+
+    .content {
+        padding: 0.6rem 1rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .eyebrow {
+        font-size: 0.75rem;
+    }
+
+    .content {
+        padding: 0.5rem 0.75rem;
+    }
+
+}
+
+/* Theme variations */
+.eyebrow.success {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+.eyebrow.warning {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+}
+
+.eyebrow.info {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+.eyebrow.danger {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
