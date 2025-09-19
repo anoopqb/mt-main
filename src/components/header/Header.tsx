@@ -5,7 +5,6 @@ import styles from "./Header.module.css";
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 
 interface NavItem {
     label: string;
@@ -28,7 +27,6 @@ const Header = ({ logo, navItems: cmsNavItems }: {
 }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
-    const router = useRouter();
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };

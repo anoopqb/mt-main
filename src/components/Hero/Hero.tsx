@@ -6,39 +6,88 @@ import styles from "./Hero.module.css";
 interface CTAButton {
     label: string;
     href?: string;
+    url?: string; // Support both href and url from CMS
+    target?: '_blank' | '_self' | '_parent';
     onClick?: () => void;
-    variant: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary';
+}
+
+interface CMSImage {
+    id: number;
+    url: string;
+    alternativeText?: string;
+    formats?: {
+        large?: { url: string };
+        medium?: { url: string };
+        small?: { url: string };
+    };
 }
 
 interface HeroProps {
+    // Support both direct props and CMS data structure
     title?: string;
     description?: string;
     backgroundImage?: string;
     ctaButtons?: CTAButton[];
     showParticles?: boolean;
+
+    // CMS data structure
+    image?: CMSImage[];
+    cta?: CTAButton[];
+    __component?: string;
+    id?: number;
 }
 
 const Hero = ({
     title = "Welcome to the Future",
     description = "Experience innovation like never before. Our cutting-edge solutions empower you to achieve more, create better, and build the future you envision.",
-    backgroundImage = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-    ctaButtons = [
-        { label: "Get Started", href: "/signup", variant: "primary" as const },
-        { label: "Learn More", href: "/about", variant: "secondary" as const }
-    ],
-    showParticles = true
+    backgroundImage,
+    ctaButtons,
+    showParticles = true,
+    // CMS props
+    image,
+    cta,
 }: HeroProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
+    console.log(isLoaded);
 
     useEffect(() => {
         setIsLoaded(true);
     }, []);
 
+    // Process CMS data
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337';
+
+    // Use CMS image if available, otherwise fallback to backgroundImage prop or default
+    const heroBackgroundImage =
+        image?.[0]
+            ? `${apiUrl}${image[0].formats?.large?.url || image[0].url}`
+            : backgroundImage || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80";
+
+    // Use CMS CTAs if available, otherwise fallback to ctaButtons prop or default
+    const heroCtaButtons =
+        cta && cta.length > 0
+            ? cta.map(button => ({
+                label: button.label,
+                href: button.url || button.href,
+                target: button.target,
+                variant: (button.variant || 'primary') as 'primary' | 'secondary'
+            }))
+            : ctaButtons || [
+                { label: "Get Started", href: "/signup", variant: "primary" as const },
+                { label: "Learn More", href: "/about", variant: "secondary" as const }
+            ];
+
     const handleCTAClick = (button: CTAButton) => {
         if (button.onClick) {
             button.onClick();
-        } else if (button.href) {
-            window.location.href = button.href;
+        } else if (button.href || button.url) {
+            const url = button.href || button.url;
+            if (button.target === '_blank') {
+                window.open(url, '_blank');
+            } else {
+                window.location.href = url!;
+            }
         }
     };
 
@@ -46,7 +95,7 @@ const Hero = ({
         <section
             className={styles.hero}
             style={{
-                backgroundImage: `url(${backgroundImage})`,
+                backgroundImage: `url(${heroBackgroundImage})`,
             }}
         >
             {/* Background Overlay */}
@@ -73,7 +122,7 @@ const Hero = ({
 
                 {/* Call to Action Buttons */}
                 <div className={styles.heroActions}>
-                    {ctaButtons.map((button, index) => (
+                    {heroCtaButtons.map((button, index) => (
                         <button
                             key={index}
                             className={`${styles.ctaButton} ${button.variant === 'primary' ? styles.ctaPrimary : styles.ctaSecondary
